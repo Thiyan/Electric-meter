@@ -1,6 +1,9 @@
 import { delay } from "rxjs/operators";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import * as Chart from "chart.js";
+import { NgForm } from "@angular/forms";
+import { MonthlyReadingsService } from "./monthly-readings.service";
+import { from } from "rxjs";
 
 @Component({
   selector: "app-tem-graph",
@@ -11,45 +14,36 @@ export class TemGraphComponent implements OnInit {
   @ViewChild("lineChart")
   private chartRef;
   chart: any;
-  a = 36.5;
 
-  dataPoints = [
-    {
-      x: new Date(),
-      y: 36.5
-    }
-  ];
+  dataPoints = [];
 
-  constructor() {}
+  constructor(private service: MonthlyReadingsService) {}
 
   ngOnInit() {
     this.draw();
-    delay(2000);
-    this.add();
   }
+  onSubmit(f: NgForm) {
+    console.log(f.value.date);
 
-  onClick() {
-    console.log("Button Clicked");
-    this.dataPoints.push({ x: new Date(), y: this.a + 0.5 });
-    console.log(this.dataPoints);
-    this.chart.update();
-    // this.c+=1;
-    // this.d*=3;;
-    // this.a.push(this.c);
-    // this.b.push(this.d);
-    // this.basicChart();
-  }
-
-  add() {
-    delay(1000);
-    this.dataPoints.push({ x: new Date(), y: this.a });
-    this.chart.update();
-
-    // this.c+=1;
-    // this.d*=3;;
-    // this.a.push(this.c);
-    // this.b.push(this.d);
-    // this.basicChart();
+    this.service.getReadings(f.value.date).subscribe(
+      response => {
+        if (JSON.parse(JSON.stringify(response)).statusCode === "S1000") {
+          this.dataPoints = JSON.parse(JSON.stringify(response))["content"];
+          this.chart.update();
+          console.log(this.dataPoints);
+        } else {
+          // alert(JSON.parse(JSON.stringify(response)).statusDescription);
+          if (JSON.parse(JSON.stringify(response)).statusCode === "E1003") {
+            alert("No results Found");
+          } else {
+            alert("An unexpected error occurred");
+          }
+        }
+      },
+      error => {
+        alert("An unexpected error occurred");
+      }
+    );
   }
 
   draw() {
@@ -89,7 +83,7 @@ export class TemGraphComponent implements OnInit {
         },
         title: {
           display: true,
-          text: "Monthly Readings",
+          text: "Daily reading",
           position: "top",
           fontSize: 25,
           fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial',sans-serif",

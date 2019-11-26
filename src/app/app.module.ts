@@ -6,24 +6,25 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
-import { TempGraphComponent } from "./temp-graph/temp-graph.component";
+
 import { from } from "rxjs";
-import { PpgGraphComponent } from "./ppg-graph/ppg-graph.component";
+import { PpgGraphComponent } from "./daily-graph/ppg-graph.component";
 import { AngularFontAwesomeModule } from "angular-font-awesome";
-import { SinglePatientComponent } from "./single-patient/single-patient.component";
+import { SinglePatientComponent } from "./single-device/single-patient.component";
 
-import { TemGraphComponent } from "./tem-graph/tem-graph.component";
-import { UserDetailsComponent } from "./user-details/user-details.component";
-import { UserImageComponent } from "./user-image/user-image.component";
+import { TemGraphComponent } from "./monthly-graph/tem-graph.component";
+import { UserDetailsComponent } from "./device-details/user-details.component";
+import { UserImageComponent } from "./device-image/user-image.component";
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
-
-import { PatientTabComponent } from "./patient-tab/patient-tab.component";
-import { MqttDataService } from "./services/mqtt-data.service";
+import { HomeLayoutComponent } from "./layouts/home-layout.component";
+import { LoginLayoutComponent } from "./layouts/login-layout.component";
+import { AuthGuard } from "./oauth.guard";
+import { EmployeeLoginComponent } from "./login/employee-login/employee-login.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    TempGraphComponent,
+
     PpgGraphComponent,
 
     SinglePatientComponent,
@@ -32,8 +33,9 @@ import { MqttDataService } from "./services/mqtt-data.service";
     UserDetailsComponent,
     UserImageComponent,
     NavBarComponent,
-
-    PatientTabComponent
+    HomeLayoutComponent,
+    LoginLayoutComponent,
+    EmployeeLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,14 @@ import { MqttDataService } from "./services/mqtt-data.service";
     RouterModule.forRoot([
       {
         path: "",
-        component: SinglePatientComponent
+        component: HomeLayoutComponent,
+        canActivate: [AuthGuard],
+        children: [{ path: "", component: SinglePatientComponent }]
+      },
+      {
+        path: "",
+        component: LoginLayoutComponent,
+        children: [{ path: "login", component: EmployeeLoginComponent }]
       },
       {
         path: "**",
@@ -52,7 +61,7 @@ import { MqttDataService } from "./services/mqtt-data.service";
       }
     ])
   ],
-  providers: [MqttDataService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

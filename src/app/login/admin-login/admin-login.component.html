@@ -1,0 +1,72 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon"></div>
+    <div class="header-title">
+      <h1>Titans Software Solutions </h1>
+      <small></small>
+    </div>
+  </section>
+
+
+  <!-- Main content -->
+  <!--profile componenent-->
+  <div class="content">
+    <!-- load messages -->
+    <!-- load custom page -->
+    <div class="row">
+      <div class="col-sm-12 col-md-12">
+        <div class="panel panel-bd lobidrag">
+          <div class="" style="padding: 0px 20px;">
+            <div class="panel-title">
+              <h4>Login - Admin</h4>
+            </div>
+          </div>
+          <div class="panel-body">
+
+
+            <form  #f="ngForm" (ngSubmit)="login(f)" enctype="multipart/form-data"  accept-charset="utf-8">
+
+
+              <!-- <input type="hidden" name="id" value="2" /> -->
+
+              <div class="form-group row">
+                <label for="user" class="col-sm-3 col-form-label">User Name*</label>
+                <div class="col-sm-9">
+                  <input ngModel name="user" #user="ngModel" class="form-control" type="text" required placeholder="User Name"  >
+                  <div class="alert alert-danger" *ngIf="user.touched && !user.valid">
+                    <div *ngIf="user.errors.required">Field is required</div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label for="password" class="col-sm-3 col-form-label">Password* </label>
+                <div class="col-sm-9">
+                  <input ngModel name="password" #password="ngModel" required type="password" placeholder="Password" class="form-control" >
+                  <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+                    <div *ngIf="password.errors.required">Field is required</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group text-right">
+                <button type="submit" class="btn btn-success w-md m-b-5">Log In</button>
+                <button type="reset" class="btn btn-primary w-md m-b-5">Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- /.content -->
+  <!--End profile component-->
+  <!-- Start Page Lavel Plugins
+  =====================================================================-->
+
+
+
+</div> <!-- /.content -->

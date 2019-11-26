@@ -1,0 +1,41 @@
+.bg-1 {
+  background-color: #26a69a;
+}
+
+.header-logo {
+  height: 35px;
+  width: 35px;
+}
+
+.m-l-20 {
+  margin-left: 20px;
+}
+
+.my-card1 {
+  width: 100%;
+  height: 200px;
+  border-radius: 4px;
+  margin-top: 30px;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.my-card2 {
+  width: 100%;
+  height: 200px;
+  border-radius: 4px;
+  /* justify-content: center; */
+  margin-top: 30px;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.vl {
+  border-left: 6px solid green;
+  height: 500px;
+}
+
+@media (max-width: 576px) {
+  .my-card1 {
+    height: 400px;
+  }
+}

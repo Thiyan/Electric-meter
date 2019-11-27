@@ -22,7 +22,7 @@ export class PpgGraphComponent implements OnInit {
 
   ngOnInit() {
     this.draw();
-    // this.add();
+    this.add();
   }
 
   onSubmit(f: NgForm) {
@@ -53,40 +53,40 @@ export class PpgGraphComponent implements OnInit {
   //   this.dataPoints.push({ x: new Date(), y: 400 });
   //   this.chart.update();
   // }
-  // add() {
-  //   delay(20000);
-  //   this.dataPoints.push({ x: new Date(), y: 400 });
-  //   this.chart.update();
-  //   delay(20000);
+  add() {
+    delay(20000);
+    this.dataPoints.push({ x: new Date(), y: 400 });
+    this.chart.update();
+    delay(20000);
 
-  //   this.dataPoints.push({ x: new Date(), y: 337 });
-  //   this.chart.update();
-  //   delay(2000);
+    this.dataPoints.push({ x: new Date(), y: 337 });
+    this.chart.update();
+    delay(2000);
 
-  //   this.dataPoints.push({ x: new Date(), y: 573 });
-  //   this.chart.update();
-  //   delay(2000);
+    this.dataPoints.push({ x: new Date(), y: 573 });
+    this.chart.update();
+    delay(2000);
 
-  //   this.dataPoints.push({ x: new Date(), y: 445 });
-  //   this.chart.update();
-  //   delay(2000);
+    this.dataPoints.push({ x: new Date(), y: 445 });
+    this.chart.update();
+    delay(2000);
 
-  //   this.dataPoints.push({ x: new Date(), y: 650 });
-  //   this.chart.update();
-  //   delay(2000);
+    this.dataPoints.push({ x: new Date(), y: 650 });
+    this.chart.update();
+    delay(2000);
 
-  //   this.dataPoints.push({ x: new Date(), y: 720 });
-  //   this.chart.update();
-  //   delay(2000);
+    this.dataPoints.push({ x: new Date(), y: 720 });
+    this.chart.update();
+    delay(2000);
 
-  //   this.dataPoints.push({ x: new Date(), y: 448 });
-  //   this.chart.update();
-  //   delay(2000);
+    this.dataPoints.push({ x: new Date(), y: 448 });
+    this.chart.update();
+    delay(2000);
 
-  //   this.dataPoints.push({ x: new Date(), y: 589 });
-  //   this.chart.update();
-  //   delay(2000);
-  // }
+    this.dataPoints.push({ x: new Date(), y: 589 });
+    this.chart.update();
+    delay(2000);
+  }
 
   draw() {
     this.chart = new Chart(this.chartRef.nativeElement, {
@@ -143,7 +143,11 @@ export class PpgGraphComponent implements OnInit {
               display: true,
               // distribution: "series",
               bounds: "data",
-              type: "time"
+              type: "time",
+              ticks: {
+                autoSkip: true,
+                maxTicksLimit: 20
+              }
               // time: {
               //   // unit: "millisecond"
               //   // format: "timeFormat"

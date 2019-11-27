@@ -1,72 +1,35 @@
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <div class="header-icon"></div>
-    <div class="header-title">
-      <h1>Titans Software Solutions </h1>
-      <small></small>
+<h2>Login</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      formControlName="username"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+    />
+    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+      <div *ngIf="f.username.errors.required">Username is required</div>
     </div>
-  </section>
-
-
-  <!-- Main content -->
-  <!--profile componenent-->
-  <div class="content">
-    <!-- load messages -->
-    <!-- load custom page -->
-    <div class="row">
-      <div class="col-sm-12 col-md-12">
-        <div class="panel panel-bd lobidrag">
-          <div class="" style="padding: 0px 20px;">
-            <div class="panel-title">
-              <h4>Login</h4>
-            </div>
-          </div>
-          <div class="panel-body">
-
-
-            <form  #f="ngForm" (ngSubmit)="submit(f)"   accept-charset="utf-8">
-
-
-              <!-- <input type="hidden" name="id" value="2" /> -->
-
-              <div class="form-group row">
-                <label for="user" class="col-sm-3 col-form-label">User Name*</label>
-                <div class="col-sm-9">
-                  <input ngModel name="user" #user="ngModel" class="form-control" type="text" required placeholder="User Name"  >
-                  <div class="alert alert-danger" *ngIf="user.touched && !user.valid">
-                    <div *ngIf="user.errors.required">Field is required</div>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="form-group row">
-                <label for="password" class="col-sm-3 col-form-label">Password* </label>
-                <div class="col-sm-9">
-                  <input ngModel name="password" #password="ngModel" required type="password" placeholder="Password" class="form-control" >
-                  <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
-                    <div *ngIf="password.errors.required">Field is required</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group text-right">
-                <button type="submit" class="btn btn-success w-md m-b-5">Log In</button>
-                <button type="reset" class="btn btn-primary w-md m-b-5">Reset</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      formControlName="password"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+    />
+    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+      <div *ngIf="f.password.errors.required">Password is required</div>
     </div>
-
-  </div> <!-- /.content -->
-  <!--End profile component-->
-  <!-- Start Page Lavel Plugins
-  =====================================================================-->
-
-
-
-</div> <!-- /.content -->
+  </div>
+  <div class="form-group">
+    <button [disabled]="loading" class="btn btn-primary">Login</button>
+    <img
+      *ngIf="loading"
+      src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+    />
+    <a [routerLink]="['/register']" class="btn btn-link">Register</a>
+  </div>
+</form>

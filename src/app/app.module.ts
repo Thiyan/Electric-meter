@@ -3,7 +3,8 @@ import { NgModule } from "@angular/core";
 import { PlotlyModule } from "angular-plotly.js";
 import { RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
 
@@ -20,6 +21,7 @@ import { HomeLayoutComponent } from "./layouts/home-layout.component";
 import { LoginLayoutComponent } from "./layouts/login-layout.component";
 import { AuthGuard } from "./oauth.guard";
 import { EmployeeLoginComponent } from "./login/employee-login/employee-login.component";
+import { LoginComponent } from "./login/login/login.component";
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { EmployeeLoginComponent } from "./login/employee-login/employee-login.co
     NavBarComponent,
     HomeLayoutComponent,
     LoginLayoutComponent,
-    EmployeeLoginComponent
+    EmployeeLoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { EmployeeLoginComponent } from "./login/employee-login/employee-login.co
     FormsModule,
     HttpClientModule,
     AngularFontAwesomeModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {
         path: "",
@@ -53,7 +57,7 @@ import { EmployeeLoginComponent } from "./login/employee-login/employee-login.co
       {
         path: "",
         component: LoginLayoutComponent,
-        children: [{ path: "login", component: EmployeeLoginComponent }]
+        children: [{ path: "login", component: LoginComponent }]
       },
       {
         path: "**",

@@ -83,7 +83,7 @@ export class TemGraphComponent implements OnInit {
         },
         title: {
           display: true,
-          text: "Daily reading",
+          text: "Monthly reading",
           position: "top",
           fontSize: 25,
           fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial',sans-serif",

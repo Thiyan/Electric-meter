@@ -1,4 +1,3 @@
-import { MqttDataService } from "./services/mqtt-data.service";
 import { Component } from "@angular/core";
 
 @Component({

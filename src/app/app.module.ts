@@ -21,7 +21,7 @@ import { HomeLayoutComponent } from "./layouts/home-layout.component";
 import { LoginLayoutComponent } from "./layouts/login-layout.component";
 import { AuthGuard } from "./oauth.guard";
 import { EmployeeLoginComponent } from "./login/employee-login/employee-login.component";
-import { LoginComponent } from "./login/login/login.component";
+import { LoginComponent } from "./signup/login/login.component";
 
 @NgModule({
   declarations: [

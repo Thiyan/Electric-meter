@@ -14,20 +14,13 @@ export class LoginService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      "Content-Type": "application/json",
-      Authorization: "get.auth_token"
+      "Content-Type": "application/json"
     })
   };
 
   add(f: NgForm): Observable<Object> {
-    const input = new FormData();
+    console.log(f.value);
 
-    input.append("user", f.value.user);
-    input.append("password", f.value.password);
-
-    console.log(input.get("user"));
-    console.log(input.get("password"));
-
-    return this.http.post(this.url, input);
+    return this.http.post(this.url, f.value);
   }
 }

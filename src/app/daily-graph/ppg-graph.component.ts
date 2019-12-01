@@ -31,7 +31,19 @@ export class PpgGraphComponent implements OnInit {
     this.service.getReadings(f.value.date).subscribe(
       response => {
         if (JSON.parse(JSON.stringify(response)).statusCode === "S1000") {
-          this.dataPoints = JSON.parse(JSON.stringify(response))["content"];
+          let list = JSON.parse(JSON.stringify(response))["content"];
+
+          //Clear the previous array
+          this.dataPoints = [];
+
+          //Iterate the array
+          list.array.forEach(element => {
+            //Convert the String to Date
+            element.date = new Date(element.date);
+
+            //Add the object to the Common array
+            this.dataPoints.push(element);
+          });
           this.chart.update();
           console.log(this.dataPoints);
         } else {

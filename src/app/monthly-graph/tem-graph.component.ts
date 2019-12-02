@@ -22,28 +22,66 @@ export class TemGraphComponent implements OnInit {
   ngOnInit() {
     this.draw();
   }
+  // onSubmit(f: NgForm) {
+  //   console.log(f.value.date);
+
+  //   this.service.getReadings(f.value.date).subscribe(
+  //     response => {
+  //       if (JSON.parse(JSON.stringify(response)).statusCode === "S1000") {
+  //         this.dataPoints = JSON.parse(JSON.stringify(response))["content"];
+  //         this.chart.update();
+  //         console.log(this.dataPoints);
+  //       } else {
+  //         // alert(JSON.parse(JSON.stringify(response)).statusDescription);
+  //         if (JSON.parse(JSON.stringify(response)).statusCode === "E1003") {
+  //           alert("No results Found");
+  //         } else {
+  //           alert("An unexpected error occurred");
+  //         }
+  //       }
+  //     },
+  //     error => {
+  //       alert("An unexpected error occurred");
+  //     }
+  //   );
+  // }
+
   onSubmit(f: NgForm) {
     console.log(f.value.date);
 
-    this.service.getReadings(f.value.date).subscribe(
-      response => {
-        if (JSON.parse(JSON.stringify(response)).statusCode === "S1000") {
-          this.dataPoints = JSON.parse(JSON.stringify(response))["content"];
-          this.chart.update();
-          console.log(this.dataPoints);
-        } else {
-          // alert(JSON.parse(JSON.stringify(response)).statusDescription);
-          if (JSON.parse(JSON.stringify(response)).statusCode === "E1003") {
-            alert("No results Found");
-          } else {
-            alert("An unexpected error occurred");
-          }
-        }
-      },
-      error => {
-        alert("An unexpected error occurred");
-      }
-    );
+    this.dataPoints.length = 0;
+    // this.dataPoints = this.get();
+    let list = this.get();
+
+    list.forEach(e => {
+      this.dataPoints.push(e);
+    });
+
+    this.chart.update();
+
+    console.log(this.dataPoints);
+  }
+  // get() {
+  //   return [
+  //     { x: 1, y: 400 },
+  //     { x: 2, y: 337 },
+
+  //     { x: 3, y: 573 },
+
+  //     { x: 4, y: 445 },
+
+  //     { x: 5, y: 650 },
+
+  //     { x: 6, y: 720 },
+
+  //     { x: 7, y: 448 },
+
+  //     { x: 8, y: 589 }
+  //   ];
+  // }
+
+  get() {
+    return [400, 337, 573, 445, 650, 720, 448, 589];
   }
 
   draw() {
@@ -51,7 +89,7 @@ export class TemGraphComponent implements OnInit {
       type: "line",
 
       data: {
-        // labels: ["1", "2"], // your labels array
+        labels: ["1", "2", "3", "4", "5", "6", "7"], // your labels array
         datasets: [
           {
             data: this.dataPoints, // your data array
@@ -95,29 +133,34 @@ export class TemGraphComponent implements OnInit {
           display: false
         },
 
-        scales: {
-          xAxes: [
-            {
-              display: true,
-              // distribution: "series",
-              bounds: "data",
-              type: "time"
-              // time: {
-              //   // unit: "millisecond"
-              //   // format: "timeFormat"
-              // }
-            }
-          ],
-          yAxes: [
-            {
-              // display: true
-              // ticks: {
-              //   max: 1,
-              //   min: -1
-              // }
-            }
-          ]
-        },
+        // scales: {
+        //   xAxes: [
+        //     {
+        //       display: true,
+        //       // distribution: "series",
+        //       bounds: "data",
+        //       type: "number"
+        //       // ticks: {
+        //       //   max: 30,
+        //       //   min: 1,
+        //       //   stepSize: 1
+        //       // }
+        //       // time: {
+        //       //   // unit: "millisecond"
+        //       //   // format: "timeFormat"
+        //       // }
+        //     }
+        //   ],
+        //   yAxes: [
+        //     {
+        //       // display: true
+        //       // ticks: {
+        //       //   max: 1,
+        //       //   min: -1
+        //       // }
+        //     }
+        //   ]
+        // },
         elements: {}
       }
     });

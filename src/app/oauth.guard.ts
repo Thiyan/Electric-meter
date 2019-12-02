@@ -22,6 +22,7 @@ export class AuthGuard implements CanActivate {
   }
 
   checkLogin(): boolean {
-    return localStorage.getItem("login") === "true";
+    // return localStorage.getItem("login") === "true";
+    return true;
   }
 }

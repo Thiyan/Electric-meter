@@ -22,43 +22,66 @@ export class PpgGraphComponent implements OnInit {
 
   ngOnInit() {
     this.draw();
-    this.add();
+    // this.add();
   }
+
+  // onSubmit(f: NgForm) {
+  //   console.log(f.value.date);
+
+  //   this.service.getReadings(f.value.date).subscribe(
+  //     response => {
+  //       if (JSON.parse(JSON.stringify(response)).statusCode === "S1000") {
+  //         let list = JSON.parse(JSON.stringify(response))["content"];
+
+  //         //Clear the previous array
+  //         this.dataPoints = [];
+
+  //         //Iterate the array
+  //         list.array.forEach(element => {
+  //           //Convert the String to Date
+  //           element.date = new Date(element.date);
+
+  //           //Add the object to the Common array
+  //           this.dataPoints.push(element);
+  //         });
+  //         this.chart.update();
+  //         console.log(this.dataPoints);
+  //       } else {
+  //         // alert(JSON.parse(JSON.stringify(response)).statusDescription);
+  //         if (JSON.parse(JSON.stringify(response)).statusCode === "E1003") {
+  //           alert("No results Found");
+  //         } else {
+  //           alert("An unexpected error occurred");
+  //         }
+  //       }
+  //     },
+  //     error => {
+  //       alert("An unexpected error occurred");
+  //     }
+  //   );
+  // }
 
   onSubmit(f: NgForm) {
     console.log(f.value.date);
 
-    this.service.getReadings(f.value.date).subscribe(
-      response => {
-        if (JSON.parse(JSON.stringify(response)).statusCode === "S1000") {
-          let list = JSON.parse(JSON.stringify(response))["content"];
+    let list = this.get();
+    console.log(list);
+    //Clear the previous array
+    // this.dataPoints = [];
+    this.dataPoints.length = 0;
 
-          //Clear the previous array
-          this.dataPoints = [];
+    //Iterate the array
+    list.forEach(element => {
+      //Convert the String to Date
+      // element.x = new Date(element.x);
 
-          //Iterate the array
-          list.array.forEach(element => {
-            //Convert the String to Date
-            element.date = new Date(element.date);
+      //Add the object to the Common array
+      this.dataPoints.push(element);
+      // console.log(this.dataPoints);
+      this.chart.update();
 
-            //Add the object to the Common array
-            this.dataPoints.push(element);
-          });
-          this.chart.update();
-          console.log(this.dataPoints);
-        } else {
-          // alert(JSON.parse(JSON.stringify(response)).statusDescription);
-          if (JSON.parse(JSON.stringify(response)).statusCode === "E1003") {
-            alert("No results Found");
-          } else {
-            alert("An unexpected error occurred");
-          }
-        }
-      },
-      error => {
-        alert("An unexpected error occurred");
-      }
-    );
+      delay(100);
+    });
   }
 
   // add(data) {
@@ -98,6 +121,25 @@ export class PpgGraphComponent implements OnInit {
     this.dataPoints.push({ x: new Date(), y: 589 });
     this.chart.update();
     delay(2000);
+  }
+
+  get() {
+    return [
+      { x: new Date(), y: 400 },
+      { x: new Date(), y: 337 },
+
+      { x: new Date(), y: 573 },
+
+      { x: new Date(), y: 445 },
+
+      { x: new Date(), y: 650 },
+
+      { x: new Date(), y: 720 },
+
+      { x: new Date(), y: 448 },
+
+      { x: new Date(), y: 589 }
+    ];
   }
 
   draw() {
